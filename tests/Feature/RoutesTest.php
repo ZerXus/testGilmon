@@ -60,7 +60,7 @@ class RoutesTest extends TestCase
 
     public function testGetDocument()
     {
-        $response = $this->get("/api/v1/document/09b9fdc4-f631-3590-a1c0-c0bf75252686",
+        $response = $this->get("/api/v1/document/testingPHPUnitGet",
             ["Accept" => "application/json"]);
 
         $response->assertStatus(200);
@@ -109,8 +109,8 @@ class RoutesTest extends TestCase
 
     public function testEditPublished()
     {
-        $testJSON = $this->get('/api/v1/document/09b9fdc4-f631-3590-a1c0-c0bf75252686')->json();
-        $response = $this->patch("/api/v1/document/09b9fdc4-f631-3590-a1c0-c0bf75252686", $this->patchContent);
+        $testJSON = $this->get('/api/v1/document/testingPHPUnitEditPublished')->json();
+        $response = $this->patch("/api/v1/document/testingPHPUnitEditPublished/", $this->patchContent);
 
         $response->assertStatus(400);
         $response->assertJsonStructure([
@@ -132,7 +132,7 @@ class RoutesTest extends TestCase
 
     public function testPublishAlreadyPublished()
     {
-        $idPublished = '09b9fdc4-f631-3590-a1c0-c0bf75252686';
+        $idPublished = 'testingPHPUnitPublishAlreadyPublished';
         $response = $this->post("/api/v1/document/$idPublished/publish");
 
         $response->assertStatus(200);
